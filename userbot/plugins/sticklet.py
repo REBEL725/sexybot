@@ -4,9 +4,8 @@ import random
 import textwrap
 
 from PIL import Image, ImageDraw, ImageFont
+from REBELBOT.utils import admin_cmd, sudo_cmd
 from telethon.tl.types import InputMessagesFilterDocument
-
-from REBELBOT.utils import admin_cmd, sudo_cmd, edit_or_reply
 
 
 @bot.on(admin_cmd(pattern="text (.*)"))

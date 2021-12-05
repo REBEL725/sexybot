@@ -1,13 +1,12 @@
 from REBELBOT.utils import admin_cmd, edit_or_reply, sudo_cmd
-from userbot.cmdhelp import CmdHelp
-
-from telethon.events import InlineQuery, callbackquery
-from telethon.tl.custom import Button
 from telethon.errors.rpcerrorlist import UserNotParticipantError
 from telethon.tl.functions.channels import GetParticipantRequest
-from telethon.tl.functions.messages import ExportChatInviteRequest
+
+from userbot.cmdhelp import CmdHelp
 from userbot.plugins.sql_helper.fsub_sql import *
+
 from . import *
+
 """
 @tgbot.on(InlineQuery)
 async def fsub_in(event):
@@ -70,9 +69,7 @@ async def forcesub(event):
         await bot(GetParticipantRequest(int(joinchat), user.id))
     except UserNotParticipantError:
         await bot.edit_permissions(event.chat_id, user.id, send_messages=False)
-        res = await bot.inline_query(
-            tgbotusername, f"fsub {user.id}+{joinchat}"
-        )
+        res = await bot.inline_query(tgbotusername, f"fsub {user.id}+{joinchat}")
         await res[0].click(event.chat_id, reply_to=event.action_message.id)
 
 
@@ -91,11 +88,15 @@ async def _(event):
         try:
             ch = int(hunter)
         except BaseException:
-            return await eod(event, "⚠️ **Error !** \n\nChannel ID invalid. Please Recheck It !")
+            return await eod(
+                event, "⚠️ **Error !** \n\nChannel ID invalid. Please Recheck It !"
+            )
     try:
         hunter = (await bot.get_entity(ch)).id
     except BaseException:
-        return await edit_or_reply(event, "⚠️ **Error !** \n\nChannel ID invalid. Please Recheck It !")
+        return await edit_or_reply(
+            event, "⚠️ **Error !** \n\nChannel ID invalid. Please Recheck It !"
+        )
     if not str(hunter).startswith("-100"):
         hunter = int("-100" + str(hunter))
     add_fsub(event.chat_id, hunter)
@@ -133,16 +134,15 @@ async def list(event):
         CHANNEL_LIST = "No Chat Found With Active Force Subscribe."
     await edit_or_reply(event, CHANNEL_LIST)
 
+
 CmdHelp("fsub").add_command(
-  "fsub", "<channel username/id>", "Activates Force Subscribe In The Chat"
+    "fsub", "<channel username/id>", "Activates Force Subscribe In The Chat"
+).add_command("rmfsub", None, "Removes the chat from Force Subscribe").add_command(
+    "chfsub", None, "Checks for the Status of Force Subscribe In The Chat."
 ).add_command(
-  "rmfsub", None, "Removes the chat from Force Subscribe"
-).add_command(
-  "chfsub", None, "Checks for the Status of Force Subscribe In The Chat."
-).add_command(
-  "lsfsub", None, "Gives the list of all chats with force subscribe enabled."
+    "lsfsub", None, "Gives the list of all chats with force subscribe enabled."
 ).add_warning(
-  "✅ Harmless Module."
+    "✅ Harmless Module."
 ).add_info(
-  "Force Them To Join. \n**📌 Note :** You need to be admin jn both the chat to use this module."
+    "Force Them To Join. \n**📌 Note :** You need to be admin jn both the chat to use this module."
 ).add()

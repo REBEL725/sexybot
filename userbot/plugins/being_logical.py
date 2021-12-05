@@ -1,11 +1,10 @@
-
-
 import asyncio
 import random
 
 from telethon import events
-from REBELBOT.utils import admin_cmd
+
 from userbot.cmdhelp import CmdHelp
+
 
 @borg.on(events.NewMessage(pattern=r"\.belo", outgoing=True))
 async def _(event):
@@ -574,6 +573,5 @@ async def _(event):
             '`"If we put solar panels above parking lots, then our cars wouldn\'t get hot and we would have a lot of clean energy."`'
         )
 
-CmdHelp("being_logical").add_command(
-   'belo', None, 'use and know'
-).add() 
+
+CmdHelp("being_logical").add_command("belo", None, "use and know").add()

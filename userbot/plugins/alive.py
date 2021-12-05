@@ -2,12 +2,12 @@
 # Porting in REBELUSERBOT by REBEL75
 
 import asyncio
-import random
-from telethon import events, version
+
+from telethon import version
+
 from userbot import ALIVE_NAME, REBELversion
-from userbot.utils import admin_cmd, sudo_cmd
-from telethon.tl.types import ChannelParticipantsAdmins
 from userbot.cmdhelp import CmdHelp
+from userbot.utils import admin_cmd, sudo_cmd
 
 # 🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "REBELBOT"
@@ -48,30 +48,27 @@ pm_caption += " [🔥𝐑𝐄𝐏𝐎🔥](https://github.com/REBEL75/REBELBOTOP
 @bot.on(admin_cmd(outgoing=True, pattern="alive$"))
 @bot.on(sudo_cmd(pattern="alive$", allow_sudo=True))
 async def amireallyalive(alive):
-    await alive.get_chat()   
+    await alive.get_chat()
     await alive.delete()
-    on = await borg.send_file(alive.chat_id, file=file1,caption=pm_caption)
+    on = await borg.send_file(alive.chat_id, file=file1, caption=pm_caption)
 
     await asyncio.sleep(edit_time)
-    ok = await borg.edit_message(alive.chat_id, on, file=file2) 
+    ok = await borg.edit_message(alive.chat_id, on, file=file2)
 
     await asyncio.sleep(edit_time)
     ok2 = await borg.edit_message(alive.chat_id, ok, file=file3)
 
     await asyncio.sleep(edit_time)
     ok3 = await borg.edit_message(alive.chat_id, ok2, file=file1)
-    
+
     await asyncio.sleep(edit_time)
     ok4 = await borg.edit_message(alive.chat_id, ok3, file=file3)
-    
 
     """ For .alive command, check if the bot is running.  """
     await borg.send_file(alive.chat_id, caption=pm_caption)
     await alive.delete()
-    
-    
-CmdHelp("alive").add_command(
-  "alive", None, "To check am i alive"
-).add_command(
-  "rebel", None, "To check am i alive with your favorite alive pic"
+
+
+CmdHelp("alive").add_command("alive", None, "To check am i alive").add_command(
+    "rebel", None, "To check am i alive with your favorite alive pic"
 ).add()

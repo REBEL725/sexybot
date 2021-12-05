@@ -1,33 +1,31 @@
-# credits to @mrconfused 
+# credits to @mrconfused
 
 import asyncio
 import datetime
+import functools
 import importlib
 import inspect
 import logging
 import math
 import os
 import re
+import shlex
 import sys
 import time
-import shlex
 import traceback
-import functools
 from pathlib import Path
 from time import gmtime, strftime
 from typing import Tuple
-from telethon import functions, types
-from userbot import LOGS
-from telethon import events
+
+from telethon import events, functions, types
 from telethon.tl.functions.channels import GetParticipantRequest
 from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator
-from userbot.helpers.tools import media_type
-
-from var import Var
 
 from userbot import CMD_LIST, LOAD_PLUG, LOGS, SUDO_LIST, bot
-from userbot.helpers.exceptions import CancelProcess
 from userbot.Config import Config
+from userbot.helpers.exceptions import CancelProcess
+from userbot.helpers.tools import media_type
+from var import Var
 
 ENV = bool(os.environ.get("ENV", False))
 if ENV:
@@ -35,7 +33,6 @@ if ENV:
 else:
     if os.path.exists("config.py"):
         from config import Development as Config
-
 
 
 def load_module(shortname):
@@ -97,7 +94,6 @@ def remove_plugin(shortname):
                     del bot._event_builders[i]
     except BaseException:
         raise ValueError
-
 
 
 def admin_cmd(pattern=None, command=None, **args):
@@ -223,6 +219,7 @@ def sudo_cmd(pattern=None, command=None, **args):
     # check if the plugin should listen for outgoing 'messages'
     return events.NewMessage(**args)
 
+
 # https://t.me/c/1220993104/623253
 # https://docs.telethon.dev/en/latest/misc/changelog.html#breaking-changes
 async def edit_or_reply(
@@ -290,6 +287,7 @@ async def edit_or_reply(
     await event.delete()
     os.remove(file_name)
 
+
 async def delete_REBEL(event, text, time=None, parse_mode=None, link_preview=None):
     parse_mode = parse_mode or "md"
     link_preview = link_preview or False
@@ -309,6 +307,7 @@ async def delete_REBEL(event, text, time=None, parse_mode=None, link_preview=Non
         )
     await asyncio.sleep(time)
     return await REBELevent.delete()
+
 
 # from paperplaneextended
 on = bot.on
@@ -333,10 +332,7 @@ def errors_handler(func):
         except BaseException:
 
             date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-            new = {
-                'error': str(sys.exc_info()[1]),
-                'date': datetime.datetime.now()
-            }
+            new = {"error": str(sys.exc_info()[1]), "date": datetime.datetime.now()}
 
             text = "**USERBOT CRASH REPORT**\n\n"
 
@@ -363,17 +359,15 @@ def errors_handler(func):
             ftext += str(sys.exc_info()[1])
             ftext += "\n\n--------END USERBOT TRACEBACK LOG--------"
 
-            command = "git log --pretty=format:\"%an: %s\" -5"
+            command = 'git log --pretty=format:"%an: %s" -5'
 
             ftext += "\n\n\nLast 5 commits:\n"
 
             process = await asyncio.create_subprocess_shell(
-                command,
-                stdout=asyncio.subprocess.PIPE,
-                stderr=asyncio.subprocess.PIPE)
+                command, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
+            )
             stdout, stderr = await process.communicate()
-            result = str(stdout.decode().strip()) \
-                + str(stderr.decode().strip())
+            result = str(stdout.decode().strip()) + str(stderr.decode().strip())
 
             ftext += result
 

@@ -2,8 +2,8 @@ import os
 from datetime import datetime
 
 import requests
+from REBELBOT.utils import admin_cmd, edit_or_reply, sudo_cmd
 
-from REBELBOT.utils import admin_cmd, sudo_cmd, edit_or_reply
 from userbot.cmdhelp import CmdHelp
 
 
@@ -70,8 +70,11 @@ async def _(event):
             # now, remove the temporary file
             os.remove(required_file_name)
     else:
-        await REBELevent.edit("Reply to a voice message, to get the relevant transcript.")
+        await REBELevent.edit(
+            "Reply to a voice message, to get the relevant transcript."
+        )
+
 
 CmdHelp("stt").add_command(
-  "stt", "<reply to voice>", "Gets the relevant transcript of replied voice message."
+    "stt", "<reply to voice>", "Gets the relevant transcript of replied voice message."
 ).add()

@@ -4,10 +4,9 @@
 # aukaat h bsdk teri...jake baap ka loda chus ke aa....
 
 
-import re
+from REBELBOT.utils import admin_cmd, edit_or_reply, sudo_cmd
 
 from userbot import bot
-from REBELBOT.utils import admin_cmd, sudo_cmd, edit_or_reply
 from userbot.cmdhelp import CmdHelp
 from userbot.helpers.functions import deEmojify
 
@@ -20,7 +19,9 @@ async def nope(h1m4n5hu0p):
         if h1m4n5hu0p.is_reply:
             (await h1m4n5hu0p.get_reply_message()).message
         else:
-            await edit_or_reply(h1m4n5hu0p, "`Sir please give some query to search and download it for you..!`"
+            await edit_or_reply(
+                h1m4n5hu0p,
+                "`Sir please give some query to search and download it for you..!`",
             )
             return
 
@@ -33,8 +34,8 @@ async def nope(h1m4n5hu0p):
         hide_via=True,
     )
     await h1m4n5hu0p.delete()
-    
+
 
 CmdHelp("memevoice").add_command(
-  "mev", "<meme txt>", "Searches and uploads the meme in voice format (if any)."
+    "mev", "<meme txt>", "Searches and uploads the meme in voice format (if any)."
 ).add()

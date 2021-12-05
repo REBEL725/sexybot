@@ -1,8 +1,9 @@
 """REBELBOT Help Command"""
 
+from REBELBOT.utils import *
+
 from userbot import *
 from userbot import CMD_HELP
-from REBELBOT.utils import *
 
 
 @bot.on(admin_cmd(pattern="helps(?: |$)(.*)", outgoing=True))

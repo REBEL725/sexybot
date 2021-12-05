@@ -1,9 +1,8 @@
-
-
 import asyncio
 import random
 
 from REBELBOT.utils import admin_cmd
+
 from userbot.cmdhelp import CmdHelp
 
 
@@ -599,6 +598,4 @@ async def _(event):
         )
 
 
-CmdHelp("biblical").add_command(
-   'bbl', None, 'Say Something From Holy Bible'
-).add() 
+CmdHelp("biblical").add_command("bbl", None, "Say Something From Holy Bible").add()

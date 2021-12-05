@@ -2,6 +2,7 @@ import asyncio
 from time import sleep
 
 from telethon.tl import functions
+from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import (
     ChannelParticipantsAdmins,
     ChannelParticipantsKicked,
@@ -14,12 +15,7 @@ from telethon.tl.types import (
     UserStatusRecently,
 )
 
-from telethon.errors import ChatAdminRequiredError, UserAdminInvalidError
-from telethon.tl import functions
-from telethon.tl.functions.channels import EditBannedRequest
-
 from . import *
-
 
 BANNED_RIGHTS = ChatBannedRights(
     until_date=None,
@@ -33,6 +29,7 @@ BANNED_RIGHTS = ChatBannedRights(
     embed_links=True,
 )
 
+
 @bot.on(admin_cmd(pattern=r"kickall ?(.*)"))
 @bot.on(admin_cmd(pattern=r"kickall ?(.*)", allow_sudo=True))
 async def _(event):
@@ -40,10 +37,8 @@ async def _(event):
         functions.channels.GetParticipantRequest(event.chat_id, event.client.uid)
     )
     if not result.participant.admin_rights.ban_users:
-        return await edit_or_reply(
-            event, "No immunity for this action!!"
-        )
-    hell = await edit_or_reply(event, "**ᖇᗴᗷᗴᒪ ᗰᗩᘜIK ՏTᗩᖇTᗴᗪ...**")
+        return await edit_or_reply(event, "No immunity for this action!!")
+    await edit_or_reply(event, "**ᖇᗴᗷᗴᒪ ᗰᗩᘜIK ՏTᗩᖇTᗴᗪ...**")
     admins = await event.client.get_participants(
         event.chat_id, filter=ChannelParticipantsAdmins
     )
@@ -60,12 +55,10 @@ async def _(event):
         except Exception as e:
             LOGS.info(str(e))
             await asyncio.sleep(0.5)
-    await event.edit(
-        "**Bleck Magik Done...**"
-    )
+    await event.edit("**Bleck Magik Done...**")
     await bot.send_message(
         Config.LOGGER_ID,
-        f"#KICKALL \n\nKicked Out  `{success}`  of  `{total}`  members"
+        f"#KICKALL \n\nKicked Out  `{success}`  of  `{total}`  members",
     )
 
 
@@ -76,10 +69,8 @@ async def _(event):
         functions.channels.GetParticipantRequest(event.chat_id, event.client.uid)
     )
     if not result:
-        return await edit_or_reply(
-            event, "Immunity Low!!"
-        )
-    hell = await edit_or_reply(event, "**𝐑𝐄𝐁𝐄𝐋 𝐁𝐎𝐓 𝐌𝐀𝐆𝐈𝐊 𝐒𝐓𝐀𝐑𝐓𝐄𝐃....**")
+        return await edit_or_reply(event, "Immunity Low!!")
+    await edit_or_reply(event, "**𝐑𝐄𝐁𝐄𝐋 𝐁𝐎𝐓 𝐌𝐀𝐆𝐈𝐊 𝐒𝐓𝐀𝐑𝐓𝐄𝐃....**")
     admins = await event.client.get_participants(
         event.chat_id, filter=ChannelParticipantsAdmins
     )
@@ -98,14 +89,12 @@ async def _(event):
         except Exception as e:
             LOGS.info(str(e))
             await asyncio.sleep(0.5)
-    await event.edit(
-        "**𝐑𝐄𝐁𝐄𝐋 𝐁𝐎𝐓 𝐌𝐀𝐆𝐈𝐊 𝐃𝐎𝐍𝐄...**"
-    )
+    await event.edit("**𝐑𝐄𝐁𝐄𝐋 𝐁𝐎𝐓 𝐌𝐀𝐆𝐈𝐊 𝐃𝐎𝐍𝐄...**")
     await bot.send_message(
         Config.LOGGER_ID,
         f"#BANALL \n\nSucessfully banned  `{success}`  out of  `{total}`  members!!",
     )
-    
+
 
 @bot.on(admin_cmd(pattern=r"unbanall ?(.*)"))
 @bot.on(sudo_cmd(pattern=r"unbanall ?(.*)", allow_sudo=True))
@@ -125,9 +114,7 @@ async def _(event):
         ):
             rights = ChatBannedRights(until_date=0, view_messages=False)
             try:
-                await bot(
-                    functions.channels.ditBannedRequest(event.chat_id, i, rights)
-                )
+                await bot(functions.channels.ditBannedRequest(event.chat_id, i, rights))
             except FloodWaitError as ex:
                 logger.warn("sleeping for {} seconds".format(ex.seconds))
                 sleep(ex.seconds)
@@ -175,7 +162,9 @@ async def _(event):
             if "y" in input_str:
                 status, e = await ban_user(event.chat_id, i, rights)
                 if not status:
-                    await edit_or_reply(hell, "I need admin priveleges to perform this action!")
+                    await edit_or_reply(
+                        hell, "I need admin priveleges to perform this action!"
+                    )
                     e.append(str(e))
                     break
                 else:
@@ -185,7 +174,9 @@ async def _(event):
             if "m" in input_str:
                 status, e = await ban_user(event.chat_id, i, rights)
                 if not status:
-                    await edit_or_reply(hell, "I need admin priveleges to perform this action!")
+                    await edit_or_reply(
+                        hell, "I need admin priveleges to perform this action!"
+                    )
                     e.append(str(e))
                     break
                 else:
@@ -195,7 +186,9 @@ async def _(event):
             if "w" in input_str:
                 status, e = await ban_user(event.chat_id, i, rights)
                 if not status:
-                    await edit_or_reply(event, "I need admin priveleges to perform this action!")
+                    await edit_or_reply(
+                        event, "I need admin priveleges to perform this action!"
+                    )
                     e.append(str(e))
                     break
                 else:
@@ -205,7 +198,9 @@ async def _(event):
             if "o" in input_str:
                 status, e = await ban_user(event.chat_id, i, rights)
                 if not status:
-                    await edit_or_reply(event, "I need admin priveleges to perform this action!")
+                    await edit_or_reply(
+                        event, "I need admin priveleges to perform this action!"
+                    )
                     e.append(str(e))
                     break
                 else:
@@ -215,7 +210,9 @@ async def _(event):
             if "q" in input_str:
                 status, e = await ban_user(event.chat_id, i, rights)
                 if not status:
-                    await edit_or_reply(event, "I need admin priveleges to perform this action!")
+                    await edit_or_reply(
+                        event, "I need admin priveleges to perform this action!"
+                    )
                     e.append(str(e))
                     break
                 else:
@@ -225,7 +222,9 @@ async def _(event):
             if "r" in input_str:
                 status, e = await ban_user(event.chat_id, i, rights)
                 if not status:
-                    await edit_or_reply(event, "I need admin priveleges to perform this action!")
+                    await edit_or_reply(
+                        event, "I need admin priveleges to perform this action!"
+                    )
                     e.append(str(e))
                     break
                 else:
@@ -235,7 +234,9 @@ async def _(event):
             if "b" in input_str:
                 status, e = await ban_user(event.chat_id, i, rights)
                 if not status:
-                    await edit_or_reply(event, "I need admin priveleges to perform this action!")
+                    await edit_or_reply(
+                        event, "I need admin priveleges to perform this action!"
+                    )
                     e.append(str(e))
                     break
                 else:
@@ -245,7 +246,9 @@ async def _(event):
             if "d" in input_str:
                 status, e = await ban_user(event.chat_id, i, rights)
                 if not status:
-                    await edit_or_reply(event, "I need admin priveleges to perform this action!")
+                    await edit_or_reply(
+                        event, "I need admin priveleges to perform this action!"
+                    )
                     e.append(str(e))
                 else:
                     c = c + 1
@@ -289,15 +292,15 @@ async def ban_user(chat_id, i, rights):
 
 
 CmdHelp("killer").add_command(
-  "ikuck", None, "Gives the data of group. Deleted accounts, Last seen, Offline, Online, Recently, Bots, Etc."
+    "ikuck",
+    None,
+    "Gives the data of group. Deleted accounts, Last seen, Offline, Online, Recently, Bots, Etc.",
+).add_command("unbanall", None, "Unbans all the user in the chat.").add_command(
+    "banall", None, "Bans all the user in the chat.."
 ).add_command(
-  "unbanall", None, "Unbans all the user in the chat."
-).add_command(
-  "banall", None, "Bans all the user in the chat.."
-).add_command(
-  "kickall", None, "Kicks all the users in the chat..."
+    "kickall", None, "Kicks all the users in the chat..."
 ).add_info(
-  "⚠️ Group Destroyer"
+    "⚠️ Group Destroyer"
 ).add_warning(
-  "✅ Harmless Module."
+    "✅ Harmless Module."
 ).add()

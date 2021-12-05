@@ -2,10 +2,10 @@ import os
 from datetime import datetime
 
 from PIL import Image
+from REBELBOT.utils import admin_cmd, edit_or_reply, sudo_cmd
 from telegraph import Telegraph, exceptions, upload_file
 
 from userbot import ALIVE_NAME
-from REBELBOT.utils import admin_cmd, sudo_cmd, edit_or_reply
 from userbot.cmdhelp import CmdHelp
 
 REBEL_NAME = str(ALIVE_NAME) if ALIVE_NAME else "REBEL User"
@@ -23,7 +23,9 @@ async def _(event):
     if event.fwd_from:
         return
     if Config.PLUGIN_CHANNEL is None:
-        await edit_or_reply(event, "Please set the required environment variable `PLUGIN_CHANNEL` for this plugin to work\n\nGo to [REBELBOT Chat Group](t.me/REBELBOT_SUPPORT) for assistance"
+        await edit_or_reply(
+            event,
+            "Please set the required environment variable `PLUGIN_CHANNEL` for this plugin to work\n\nGo to [REBELBOT Chat Group](t.me/REBELBOT_SUPPORT) for assistance",
         )
         return
     if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
@@ -45,8 +47,11 @@ async def _(event):
             )
             end = datetime.now()
             ms = (end - start).seconds
-            await edit_or_reply(event, 
-                "Downloaded to {} in {} seconds. \nMaking Telegraph Link.....".format(downloaded_file_name, ms)
+            await edit_or_reply(
+                event,
+                "Downloaded to {} in {} seconds. \nMaking Telegraph Link.....".format(
+                    downloaded_file_name, ms
+                ),
             )
             if downloaded_file_name.endswith((".webp")):
                 resize_image(downloaded_file_name)
@@ -60,8 +65,9 @@ async def _(event):
                 end = datetime.now()
                 ms_two = (end - start).seconds
                 os.remove(downloaded_file_name)
-                await edit_or_reply(event, 
-                   "✓ **YOUR FILE :-** https://telegra.ph{} \n✓ **Time Taken :-** `{}` secs \n✓ **By :- [{}](tg://user?id={})**".format(
+                await edit_or_reply(
+                    event,
+                    "✓ **YOUR FILE :-** https://telegra.ph{} \n✓ **Time Taken :-** `{}` secs \n✓ **By :- [{}](tg://user?id={})**".format(
                         media_urls[0], (ms + ms_two), REBEL_NAME, h1m4n5hu0p
                     ),
                     link_preview=True,
@@ -90,11 +96,14 @@ async def _(event):
             end = datetime.now()
             ms = (end - start).seconds
             himanshu = f"https://telegra.ph/{response['path']}"
-            await edit_or_reply(event, 
-                  f"✓ **Pasted to** [telegraph]({himanshu}) \n✓ **Time Taken :-** `{ms}` secs\n✓** By :- **[{REBEL_NAME}](tg://user?id={h1m4n5hu0p})", link_preview=True)
+            await edit_or_reply(
+                event,
+                f"✓ **Pasted to** [telegraph]({himanshu}) \n✓ **Time Taken :-** `{ms}` secs\n✓** By :- **[{REBEL_NAME}](tg://user?id={h1m4n5hu0p})",
+                link_preview=True,
+            )
     else:
-        await edit_or_reply(event, 
-            "Reply to a message to get a permanent telegra.ph link."
+        await edit_or_reply(
+            event, "Reply to a message to get a permanent telegra.ph link."
         )
 
 
@@ -104,7 +113,11 @@ def resize_image(image):
 
 
 CmdHelp("telegraph").add_command(
-  "tt", "<reply to text message>", "Uploads the replied text message to telegraph making a short telegraph link"
+    "tt",
+    "<reply to text message>",
+    "Uploads the replied text message to telegraph making a short telegraph link",
 ).add_command(
-  "tm", "<reply to media>", "Uploads the replied media (sticker/ gif/ video/ image) to telegraph and gives a short telegraph link"
+    "tm",
+    "<reply to media>",
+    "Uploads the replied media (sticker/ gif/ video/ image) to telegraph and gives a short telegraph link",
 ).add()

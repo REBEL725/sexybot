@@ -36,7 +36,9 @@ async def get_user_from_event(event, REBELevent=None, secondgroup=None):
         if user.isnumeric():
             user = int(user)
         if not user:
-            await delete_REBEL(REBELevent, "`Pass the user's username, id or reply!`", 5)
+            await delete_REBEL(
+                REBELevent, "`Pass the user's username, id or reply!`", 5
+            )
             return None, None
         if event.message.entities:
             probable_user_mention_entity = event.message.entities[0]
@@ -47,6 +49,8 @@ async def get_user_from_event(event, REBELevent=None, secondgroup=None):
         try:
             user_obj = await event.client.get_entity(user)
         except (TypeError, ValueError):
-            await delete_REBEL(REBELevent, "`Couldn't fetch user to procced further`", 5)
+            await delete_REBEL(
+                REBELevent, "`Couldn't fetch user to procced further`", 5
+            )
             return None, None
     return user_obj, extra

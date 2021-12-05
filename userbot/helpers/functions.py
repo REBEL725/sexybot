@@ -18,15 +18,15 @@ import requests
 from bs4 import BeautifulSoup
 from PIL import Image
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from telethon.tl.types import Channel, PollAnswer
+from telethon.tl.types import Channel
 from validators.url import url
-
 
 MARGINS = [50, 150, 250, 350, 450]
 
 
 # For using gif , animated stickers and videos in some parts , this
 # function takes  take a screenshot and stores ported from userge
+
 
 def utc_to_local(utc_datetime):
     now_timestamp = time.time()
@@ -35,7 +35,9 @@ def utc_to_local(utc_datetime):
     )
     return utc_datetime + offset
 
+
 # gban
+
 
 async def admin_groups(REBEL):
     REBELgroups = []
@@ -48,6 +50,7 @@ async def admin_groups(REBEL):
         ):
             REBELgroups.append(entity.id)
     return REBELgroups
+
 
 async def take_screen_shot(video_file, output_directory, ttl):
     # https://stackoverflow.com/a/13891070/4723940
@@ -199,11 +202,13 @@ async def simpmusicvideo(simp):
     command = 'youtube-dl -f "[filesize<20M]" ' + video_link
     os.system(command)
 
+
 async def unzip(downloaded_file_name):
     with zipfile.ZipFile(downloaded_file_name, "r") as zip_ref:
         zip_ref.extractall("./temp")
     downloaded_file_name = os.path.splitext(downloaded_file_name)[0]
     return f"{downloaded_file_name}.gif"
+
 
 # convertion..
 
@@ -460,6 +465,7 @@ async def miatweet(text):
     img.save("temp.jpg", "jpeg")
     return "temp.jpg"
 
+
 async def dani(text):
     r = requests.get(
         f"https://nekobot.xyz/api/imagegen?type=tweet&text={text}&username=dani_daniels___"
@@ -473,6 +479,7 @@ async def dani(text):
     img = Image.open("temp.png").convert("RGB")
     img.save("temp.jpg", "jpeg")
     return "temp.jpg"
+
 
 async def papputweet(text):
     r = requests.get(
@@ -574,7 +581,6 @@ EMOJI_PATTERN = re.compile(
 def deEmojify(inputString: str) -> str:
     """Remove emojis and other non-safe characters from string"""
     return re.sub(EMOJI_PATTERN, "", inputString)
-
 
 
 # http://effbot.org/imagingbook/imageops.html

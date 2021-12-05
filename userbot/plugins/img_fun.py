@@ -1,16 +1,16 @@
 import asyncio
 import os
-import random
 import shlex
-from typing import Optional, Tuple
-from PIL import Image, ImageDraw, ImageFont
-import PIL.ImageOps
+from typing import Tuple
 
+import PIL.ImageOps
+from PIL import Image
 from REBELBOT.utils import admin_cmd, sudo_cmd
-from userbot import CmdHelp, CMD_HELP, LOGS, bot as REBELBOT
+
+from userbot import LOGS, CmdHelp
+from userbot import bot as REBELBOT
 from userbot.helpers.functions import (
     convert_toimage,
-    convert_tosticker,
     flip_image,
     grayscale,
     invert_colors,
@@ -18,6 +18,7 @@ from userbot.helpers.functions import (
     solarize,
     take_screen_shot,
 )
+
 
 async def runcmd(cmd: str) -> Tuple[str, str, int, int]:
     args = shlex.split(cmd)
@@ -31,7 +32,8 @@ async def runcmd(cmd: str) -> Tuple[str, str, int, int]:
         process.returncode,
         process.pid,
     )
-    
+
+
 async def add_frame(imagefile, endname, x, color):
     image = Image.open(imagefile)
     inverted_image = PIL.ImageOps.expand(image, border=x, fill=color)
@@ -83,9 +85,7 @@ async def memes(REBEL):
         meme_file = REBELfile
         aura = True
     elif REBELsticker.endswith(".webp"):
-        await REBEL.edit(
-            "`Analyzing this media 🧐 inverting colors...`"
-        )
+        await REBEL.edit("`Analyzing this media 🧐 inverting colors...`")
         REBELfile = os.path.join("./temp/", "memes.jpg")
         os.rename(REBELsticker, REBELfile)
         if not os.path.lexists(REBELfile):
@@ -94,9 +94,7 @@ async def memes(REBEL):
         meme_file = REBELfile
         aura = True
     elif REBELsticker.endswith((".mp4", ".mov")):
-        await REBEL.edit(
-            "Analyzing this media 🧐 inverting colors of this video!"
-        )
+        await REBEL.edit("Analyzing this media 🧐 inverting colors of this video!")
         REBELfile = os.path.join("./temp/", "memes.jpg")
         await take_screen_shot(REBELsticker, 0, REBELfile)
         if not os.path.lexists(REBELfile):
@@ -105,9 +103,7 @@ async def memes(REBEL):
         meme_file = REBELfile
         aura = True
     else:
-        await REBEL.edit(
-            "Analyzing this media 🧐 inverting colors of this image!"
-        )
+        await REBEL.edit("Analyzing this media 🧐 inverting colors of this image!")
         meme_file = REBELsticker
     try:
         san = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
@@ -153,9 +149,7 @@ async def memes(REBEL):
 
     aura = None
     if REBELsticker.endswith(".tgs"):
-        await REBEL.edit(
-            "Analyzing this media 🧐 solarizeing this animated sticker!"
-        )
+        await REBEL.edit("Analyzing this media 🧐 solarizeing this animated sticker!")
         REBELfile = os.path.join("./temp/", "meme.png")
         REBELcmd = (
             f"lottie_convert.py --frame 0 -if lottie -of png {REBELsticker} {REBELfile}"
@@ -167,9 +161,7 @@ async def memes(REBEL):
         meme_file = REBELfile
         aura = True
     elif REBELsticker.endswith(".webp"):
-        await REBEL.edit(
-            "Analyzing this media 🧐 solarizeing this sticker!"
-        )
+        await REBEL.edit("Analyzing this media 🧐 solarizeing this sticker!")
         REBELfile = os.path.join("./temp/", "memes.jpg")
         os.rename(REBELsticker, REBELfile)
         if not os.path.lexists(REBELfile):
@@ -178,9 +170,7 @@ async def memes(REBEL):
         meme_file = REBELfile
         aura = True
     elif REBELsticker.endswith((".mp4", ".mov")):
-        await REBEL.edit(
-            "Analyzing this media 🧐 solarizeing this video!"
-        )
+        await REBEL.edit("Analyzing this media 🧐 solarizeing this video!")
         REBELfile = os.path.join("./temp/", "memes.jpg")
         await take_screen_shot(REBELsticker, 0, REBELfile)
         if not os.path.lexists(REBELfile):
@@ -189,9 +179,7 @@ async def memes(REBEL):
         meme_file = REBELfile
         aura = True
     else:
-        await REBEL.edit(
-            "Analyzing this media 🧐 solarizeing this image!"
-        )
+        await REBEL.edit("Analyzing this media 🧐 solarizeing this image!")
         meme_file = REBELsticker
     try:
         san = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
@@ -321,9 +309,7 @@ async def memes(REBEL):
 
     aura = None
     if REBELsticker.endswith(".tgs"):
-        await REBEL.edit(
-            "Analyzing this media 🧐 fliping this animated sticker!"
-        )
+        await REBEL.edit("Analyzing this media 🧐 fliping this animated sticker!")
         REBELfile = os.path.join("./temp/", "meme.png")
         REBELcmd = (
             f"lottie_convert.py --frame 0 -if lottie -of png {REBELsticker} {REBELfile}"
@@ -335,9 +321,7 @@ async def memes(REBEL):
         meme_file = REBELfile
         aura = True
     elif REBELsticker.endswith(".webp"):
-        await REBEL.edit(
-            "Analyzing this media 🧐 fliping this sticker!"
-        )
+        await REBEL.edit("Analyzing this media 🧐 fliping this sticker!")
         REBELfile = os.path.join("./temp/", "memes.jpg")
         os.rename(REBELsticker, REBELfile)
         if not os.path.lexists(REBELfile):
@@ -346,9 +330,7 @@ async def memes(REBEL):
         meme_file = REBELfile
         aura = True
     elif REBELsticker.endswith((".mp4", ".mov")):
-        await REBEL.edit(
-            "Analyzing this media 🧐 fliping this video!"
-        )
+        await REBEL.edit("Analyzing this media 🧐 fliping this video!")
         REBELfile = os.path.join("./temp/", "memes.jpg")
         await take_screen_shot(REBELsticker, 0, REBELfile)
         if not os.path.lexists(REBELfile):
@@ -357,9 +339,7 @@ async def memes(REBEL):
         meme_file = REBELfile
         aura = True
     else:
-        await REBEL.edit(
-            "Analyzing this media 🧐 fliping this image!"
-        )
+        await REBEL.edit("Analyzing this media 🧐 fliping this image!")
         meme_file = REBELsticker
     try:
         san = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
@@ -491,9 +471,7 @@ async def memes(REBEL):
 
     aura = None
     if REBELsticker.endswith(".tgs"):
-        await REBEL.edit(
-            "Analyzing this media 🧐 zooming this animated sticker!"
-        )
+        await REBEL.edit("Analyzing this media 🧐 zooming this animated sticker!")
         REBELfile = os.path.join("./temp/", "meme.png")
         REBELcmd = (
             f"lottie_convert.py --frame 0 -if lottie -of png {REBELsticker} {REBELfile}"
@@ -505,9 +483,7 @@ async def memes(REBEL):
         meme_file = REBELfile
         aura = True
     elif REBELsticker.endswith(".webp"):
-        await REBEL.edit(
-            "Analyzing this media 🧐 zooming this sticker!"
-        )
+        await REBEL.edit("Analyzing this media 🧐 zooming this sticker!")
         REBELfile = os.path.join("./temp/", "memes.jpg")
         os.rename(REBELsticker, REBELfile)
         if not os.path.lexists(REBELfile):
@@ -516,9 +492,7 @@ async def memes(REBEL):
         meme_file = REBELfile
         aura = True
     elif REBELsticker.endswith((".mp4", ".mov")):
-        await REBEL.edit(
-            "Analyzing this media 🧐 zooming this video!"
-        )
+        await REBEL.edit("Analyzing this media 🧐 zooming this video!")
         REBELfile = os.path.join("./temp/", "memes.jpg")
         await take_screen_shot(REBELsticker, 0, REBELfile)
         if not os.path.lexists(REBELfile):
@@ -526,9 +500,7 @@ async def memes(REBEL):
             return
         meme_file = REBELfile
     else:
-        await REBEL.edit(
-            "Analyzing this media 🧐 zooming this image!"
-        )
+        await REBEL.edit("Analyzing this media 🧐 zooming this image!")
         meme_file = REBELsticker
     try:
         san = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
@@ -589,9 +561,7 @@ async def memes(REBEL):
 
     aura = None
     if REBELsticker.endswith(".tgs"):
-        await REBEL.edit(
-            "Analyzing this media 🧐 framing this animated sticker!"
-        )
+        await REBEL.edit("Analyzing this media 🧐 framing this animated sticker!")
         REBELfile = os.path.join("./temp/", "meme.png")
         REBELcmd = (
             f"lottie_convert.py --frame 0 -if lottie -of png {REBELsticker} {REBELfile}"
@@ -603,9 +573,7 @@ async def memes(REBEL):
         meme_file = REBELfile
         aura = True
     elif REBELsticker.endswith(".webp"):
-        await REBEL.edit(
-            "Analyzing this media 🧐 framing this sticker!"
-        )
+        await REBEL.edit("Analyzing this media 🧐 framing this sticker!")
         REBELfile = os.path.join("./temp/", "memes.jpg")
         os.rename(REBELsticker, REBELfile)
         if not os.path.lexists(REBELfile):
@@ -614,9 +582,7 @@ async def memes(REBEL):
         meme_file = REBELfile
         aura = True
     elif REBELsticker.endswith((".mp4", ".mov")):
-        await REBEL.edit(
-            "Analyzing this media 🧐 framing this video!"
-        )
+        await REBEL.edit("Analyzing this media 🧐 framing this video!")
         REBELfile = os.path.join("./temp/", "memes.jpg")
         await take_screen_shot(REBELsticker, 0, REBELfile)
         if not os.path.lexists(REBELfile):
@@ -624,9 +590,7 @@ async def memes(REBEL):
             return
         meme_file = REBELfile
     else:
-        await REBEL.edit(
-            "Analyzing this media 🧐 framing this image!"
-        )
+        await REBEL.edit("Analyzing this media 🧐 framing this image!")
         meme_file = REBELsticker
     try:
         san = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
@@ -654,17 +618,19 @@ async def memes(REBEL):
 
 
 CmdHelp("img_fun").add_command(
-  "frame", "<reply to img>", "Makes a frame for your media file."
+    "frame", "<reply to img>", "Makes a frame for your media file."
 ).add_command(
-  "zoom", "<reply to img> <range>", "Zooms in the replied media file"
+    "zoom", "<reply to img> <range>", "Zooms in the replied media file"
 ).add_command(
-  "gray", "<reply to img>", "Makes your media file to black and white"
+    "gray", "<reply to img>", "Makes your media file to black and white"
 ).add_command(
-  "flip", "<reply to img>", "Shows you the upside down image of the given media file"
+    "flip", "<reply to img>", "Shows you the upside down image of the given media file"
 ).add_command(
-  "mirror", "<reply to img>", "Shows you the reflection of the replied image or sticker"
+    "mirror",
+    "<reply to img>",
+    "Shows you the reflection of the replied image or sticker",
 ).add_command(
-  "solarize", "<reply to img>", "Let the sun Burn your replied image/sticker"
+    "solarize", "<reply to img>", "Let the sun Burn your replied image/sticker"
 ).add_command(
-  "invert", "<reply to img>", "Inverts the color of replied media file"
+    "invert", "<reply to img>", "Inverts the color of replied media file"
 ).add()

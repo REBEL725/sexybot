@@ -15,11 +15,12 @@ cancel"""
 
 import asyncio
 
+from REBELBOT.utils import admin_cmd
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import ChannelParticipantsAdmins
-from userbot import CMD_HELP
-from REBELBOT.utils import admin_cmd
+
 from userbot.cmdhelp import CmdHelp
+
 
 @borg.on(admin_cmd(pattern="fake ?(.*)"))
 async def _(event):
@@ -32,6 +33,7 @@ async def _(event):
         action = input_str
     async with borg.action(event.chat_id, action):
         await asyncio.sleep(86400)  # type for 10 seconds
+
 
 @borg.on(admin_cmd("gbam"))
 async def gbun(event):
@@ -84,9 +86,9 @@ async def gbun(event):
 
 
 CmdHelp("fake").add_command(
-  'fake', '<action>', 'This shows the fake action in the group  the actions are typing, contact, game ,location, voice, round, video, photo, document.'
-).add_command(
-  'gbam', '<reason> (optional)', 'Fake gban. Just for fun🤓'
-).add_command(
-  'picgen', None, 'Gives a fake face image'
+    "fake",
+    "<action>",
+    "This shows the fake action in the group  the actions are typing, contact, game ,location, voice, round, video, photo, document.",
+).add_command("gbam", "<reason> (optional)", "Fake gban. Just for fun🤓").add_command(
+    "picgen", None, "Gives a fake face image"
 ).add()

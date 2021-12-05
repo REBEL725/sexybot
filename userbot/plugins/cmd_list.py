@@ -2,11 +2,13 @@ import asyncio
 import io
 
 from REBELBOT.utils import admin_cmd, edit_or_reply, sudo_cmd
-from userbot import bot as REBELBOT
+
 from userbot import ALIVE_NAME
+from userbot import bot as REBELBOT
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "REBEL User"
 REBEL_logo = "./REBEL725/REBELBOT_logo.jpg"
+
 
 @REBELBOT.on(admin_cmd(pattern=r"cmds"))
 @REBELBOT.on(sudo_cmd(pattern=r"cmds", allow_sudo=True))
@@ -37,5 +39,8 @@ async def install(event):
                 thumb=thumb,
                 reply_to=reply_to_id,
             )
-            await edit_or_reply(REBEL_file, f"Output Too Large. This is the file for the list of plugins in REBELBOT.\n\n**BY :-** {DEFAULTUSER}")
+            await edit_or_reply(
+                REBEL_file,
+                f"Output Too Large. This is the file for the list of plugins in REBELBOT.\n\n**BY :-** {DEFAULTUSER}",
+            )
             await event.delete()

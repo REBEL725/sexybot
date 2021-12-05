@@ -1,8 +1,9 @@
-#CREDIT MYSTERIOUS
+# CREDIT MYSTERIOUS
 import asyncio
 import random
 
 from . import *
+
 NUMBER = ["0", "1"]
 
 MEDHU = [
@@ -63,6 +64,7 @@ async def _(event):
             message="""{}""".format(random.choice(MEDHU)),
             reply_to=event.message.id,
         )
+
 
 @bot.on(admin_cmd(pattern="mysticxlove(?: |$)(.*)"))
 @bot.on(sudo_cmd(pattern="mysticxlove(?: |$)(.*)", allow_sudo=True))

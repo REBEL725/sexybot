@@ -1,11 +1,10 @@
 """Available Commands:
 .mf"""
 
-import asyncio
 
+from REBELBOT.utils import admin_cmd, edit_or_reply, sudo_cmd
 from telethon import functions
 
-from REBELBOT.utils import admin_cmd, sudo_cmd, edit_or_reply
 from userbot.cmdhelp import CmdHelp
 
 
@@ -28,8 +27,7 @@ async def _(event):
     logger.info(result)  # pylint:disable=E0602
     await event.edit("""Telethon UserBot powered by @REBELBOT_Support""")
 
-CmdHelp("bot").add_command(
-  "dc", None, "Gets the DataCenter Number"
-).add_command(
-  "config", None, "😒"
+
+CmdHelp("bot").add_command("dc", None, "Gets the DataCenter Number").add_command(
+    "config", None, "😒"
 ).add()

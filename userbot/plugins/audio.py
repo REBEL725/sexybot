@@ -4,25 +4,18 @@ Available Commands:
 .audio LangaugeCode | text to speak"""
 
 
-
 import asyncio
-
 import os
-
 import subprocess
-
 from datetime import datetime
 
 from gtts import gTTS
-from userbot import CMD_HELP
 from REBELBOT.utils import admin_cmd
 
-
-
+from userbot import CMD_HELP
 
 
 @borg.on(admin_cmd(pattern="audio (.*)"))
-
 async def _(event):
 
     if event.fwd_from:
@@ -68,36 +61,25 @@ async def _(event):
         tts.save(required_file_name)
 
         command_to_execute = [
-
             "ffmpeg",
-
             "-i",
-
-             required_file_name,
-
-             "-map",
-
-             "0:a",
-
-             "-codec:a",
-
-             "libopus",
-
-             "-b:a",
-
-             "100k",
-
-             "-vbr",
-
-             "on",
-
-             required_file_name + ".opus"
-
+            required_file_name,
+            "-map",
+            "0:a",
+            "-codec:a",
+            "libopus",
+            "-b:a",
+            "100k",
+            "-vbr",
+            "on",
+            required_file_name + ".opus",
         ]
 
         try:
 
-            t_response = subprocess.check_output(command_to_execute, stderr=subprocess.STDOUT)
+            t_response = subprocess.check_output(
+                command_to_execute, stderr=subprocess.STDOUT
+            )
 
         except (subprocess.CalledProcessError, NameError, FileNotFoundError) as exc:
 
@@ -116,19 +98,12 @@ async def _(event):
         ms = (end - start).seconds
 
         await borg.send_file(
-
             event.chat_id,
-
             required_file_name,
-
             # caption="Processed {} ({}) in {} seconds!".format(text[0:97], lan, ms),
-
             reply_to=event.message.reply_to_msg_id,
-
             allow_cache=False,
-
-            voice_note=True
-
+            voice_note=True,
         )
 
         os.remove(required_file_name)

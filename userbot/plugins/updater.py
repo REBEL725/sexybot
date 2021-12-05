@@ -3,9 +3,9 @@ import os
 import sys
 
 import git
+from REBELBOT.utils import admin_cmd, sudo_cmd
 
 from userbot.Config import Config
-from REBELBOT.utils import admin_cmd, sudo_cmd
 
 # -- Constants -- #
 IS_SELECTED_DIFFERENT_BRANCH = (
@@ -21,7 +21,9 @@ NEW_BOT_UP_DATE_FOUND = (
     "changelog: \n\n{changelog}\n"
     "𝚄𝙿𝙳𝙰𝚃𝙸𝙽𝙶 𝚈𝙾𝚄𝚁 𝚁𝙴𝙱𝙴𝙻𝙱𝙾𝚃 ..."
 )
-NEW_UP_DATE_FOUND = "New update found for {branch_name}\n" "` 𝚄𝙿𝙳𝙰𝚃𝙸𝙽𝙶 𝚈𝙾𝚄𝚁 𝚁𝙴𝙱𝙴𝙻𝙱𝙾𝚃...`"
+NEW_UP_DATE_FOUND = (
+    "New update found for {branch_name}\n" "` 𝚄𝙿𝙳𝙰𝚃𝙸𝙽𝙶 𝚈𝙾𝚄𝚁 𝚁𝙴𝙱𝙴𝙻𝙱𝙾𝚃...`"
+)
 REPO_REMOTE_NAME = "temponame"
 IFFUCI_ACTIVE_BRANCH_NAME = "master"
 DIFF_MARKER = "HEAD..{remote_name}/{branch_name}"
@@ -142,5 +144,3 @@ async def deploy_start(tgbot, message, refspec, remote):
     await remote.push(refspec=refspec)
     await tgbot.disconnect()
     os.execl(sys.executable, sys.executable, *sys.argv)
-  
-  

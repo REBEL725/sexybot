@@ -1,13 +1,9 @@
-import os
-
-from telethon import events
-from telethon.tl.functions.channels import EditAdminRequest
-from telethon.tl.types import ChatAdminRights
-
 from REBELBOT.utils import admin_cmd
+
 from userbot.cmdhelp import CmdHelp
 
 from . import *
+
 
 @bot.on(admin_cmd(pattern="gcast ?(.*)"))
 async def gcast(event):
@@ -53,9 +49,7 @@ async def gucast(event):
             except BaseException:
                 er += 1
     await kk.edit(f"Done in {done} chats, error in {er} chat(s)")
-    
-    CmdHelp("gcast").add_command(
-    "gcast", "MASSAGE", "SEND ALL GROUP"
-    ).add_command(
-    "gucast", "MASSAGE", "SEND ALL PM,DM"
+
+    CmdHelp("gcast").add_command("gcast", "MASSAGE", "SEND ALL GROUP").add_command(
+        "gucast", "MASSAGE", "SEND ALL PM,DM"
     ).add()

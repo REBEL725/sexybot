@@ -17,10 +17,11 @@ credits to @mrconfused and @sandy1709
 import base64
 import os
 
+from REBELBOT.utils import admin_cmd, edit_or_reply, sudo_cmd
 from telegraph import exceptions, upload_file
 from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 
-from userbot import CMD_HELP
+from userbot.cmdhelp import CmdHelp
 from userbot.helpers.functions import (
     convert_toimage,
     deEmojify,
@@ -29,8 +30,7 @@ from userbot.helpers.functions import (
     trap,
     trash,
 )
-from REBELBOT.utils import admin_cmd, edit_or_reply, sudo_cmd
-from userbot.cmdhelp import CmdHelp
+
 from . import *
 
 
@@ -267,13 +267,25 @@ async def REBELBOT(REBELmemes):
 
 
 CmdHelp("prank").add_command(
-  "phc", "<reply to img> <name> - <comment>", "Changes the given pic to dp and shows a comment in phub with the given name", "<reply to img/stcr> .phc NAME - REBELO PHUB"
+    "phc",
+    "<reply to img> <name> - <comment>",
+    "Changes the given pic to dp and shows a comment in phub with the given name",
+    "<reply to img/stcr> .phc NAME - REBELO PHUB",
 ).add_command(
-  "trap", "<reply to img/stcr> <victim name> - <trapper name>", "Changes the given pic to another pic which shows that pic content is trapped in trap card", "<reply to img/stcr> .trap Loda - Lassan"
+    "trap",
+    "<reply to img/stcr> <victim name> - <trapper name>",
+    "Changes the given pic to another pic which shows that pic content is trapped in trap card",
+    "<reply to img/stcr> .trap Loda - Lassan",
 ).add_command(
-  "trash", "<reply to image/sticker>", "Changes the given pic to another pic which shows that pic content is as equal as to trash(waste)"
+    "trash",
+    "<reply to image/sticker>",
+    "Changes the given pic to another pic which shows that pic content is as equal as to trash(waste)",
 ).add_command(
-  "threats", "<reply to image/sticker>", "Changes the given pic to another pic which shows that pic content is threat to society as that of nuclear bomb"
+    "threats",
+    "<reply to image/sticker>",
+    "Changes the given pic to another pic which shows that pic content is threat to society as that of nuclear bomb",
 ).add_command(
-  "prank", None, "If this module doesn't work then contact admins in @REBELBOT_Chit_Chat"
+    "prank",
+    None,
+    "If this module doesn't work then contact admins in @REBELBOT_Chit_Chat",
 ).add()

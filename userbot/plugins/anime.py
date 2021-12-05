@@ -1,9 +1,7 @@
-import re
-
 from REBELBOT import bot
-from REBELBOT.utils import admin_cmd, sudo_cmd, edit_or_reply
 from REBELBOT.cmdhelp import CmdHelp
 from REBELBOT.helpers.functions import deEmojify
+from REBELBOT.utils import admin_cmd, edit_or_reply, sudo_cmd
 
 
 @bot.on(admin_cmd(pattern="anime(?: |$)(.*)"))
@@ -14,7 +12,9 @@ async def nope(h1m4n5hu0p):
         if h1m4n5hu0p.is_reply:
             (await h1m4n5hu0p.get_reply_message()).message
         else:
-            await edit_or_reply(h1m4n5hu0p, "`Sir please give some query to search and download it for you..!`"
+            await edit_or_reply(
+                h1m4n5hu0p,
+                "`Sir please give some query to search and download it for you..!`",
             )
             return
 
@@ -27,8 +27,8 @@ async def nope(h1m4n5hu0p):
         hide_via=True,
     )
     await h1m4n5hu0p.delete()
-    
+
 
 CmdHelp("anime").add_command(
-  "anime", "<anime name>", "Searches for the given anime and sends the details."
+    "anime", "<anime name>", "Searches for the given anime and sends the details."
 ).add()

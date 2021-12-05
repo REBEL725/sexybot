@@ -8,9 +8,9 @@ import json
 import re
 
 import requests
+from REBELBOT.utils import *
 
 from userbot import *
-from REBELBOT.utils import *
 from userbot.cmdhelp import CmdHelp
 
 
@@ -91,5 +91,5 @@ async def anilist(event):
 
 
 CmdHelp("anilist").add_command(
-  'anilist', '<anime name>', 'Shows you the details of the anime'
+    "anilist", "<anime name>", "Shows you the details of the anime"
 ).add()

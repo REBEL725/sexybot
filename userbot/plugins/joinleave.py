@@ -1,18 +1,7 @@
-#cradit @Shinchan7222
+# cradit @Shinchan7222
 
-import os
 from REBELBOT.utils import admin_cmd
-
-from telethon.errors.rpcerrorlist import UsernameOccupiedError
 from telethon.tl import functions
-from telethon.tl.functions.account import UpdateUsernameRequest
-from telethon.tl.functions.channels import (
-    GetAdminedPublicChannelsRequest,
-    LeaveChannelRequest,
-)
-from telethon.tl.functions.messages import ImportChatInviteRequest
-from telethon.tl.functions.photos import DeletePhotosRequest, GetUserPhotosRequest
-from telethon.tl.types import Channel, Chat, InputPhoto, User
 
 from . import *
 
@@ -29,7 +18,8 @@ async def _(event):
         await event.edit("Succesfully Joined")
     except Exception as e:
         await event.edit(str(e))
-        
+
+
 @bot.on(admin_cmd(pattern="leave (.*)"))
 @bot.on(sudo_cmd(pattern="leave (.*)", allow_sudo=True))
 async def _(event):

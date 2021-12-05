@@ -4,11 +4,13 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-# the secret configuration specific things
-from var import Var
 from userbot.Config import Config
 
+# the secret configuration specific things
+from var import Var
+
 DB_URI = os.environ.get("DATABASE_URL", None)
+
 
 def start() -> scoped_session:
     db_url = (

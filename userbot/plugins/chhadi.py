@@ -1,14 +1,10 @@
+from REBELBOT.utils import admin_cmd
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
-from REBELBOT.utils import admin_cmd
-
 from userbot.cmdhelp import CmdHelp
 
-
-CmdHelp("chhadi").add_command(
-   'dm', None, 'Reply To Anymessage, meddia'
-).add()
+CmdHelp("chhadi").add_command("dm", None, "Reply To Anymessage, meddia").add()
 
 
 @borg.on(admin_cmd("dm ?(.*)"))

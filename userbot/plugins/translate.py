@@ -5,9 +5,10 @@ Available Commands:
 
 import emoji
 from googletrans import Translator
-
 from REBELBOT.utils import *
+
 from userbot.cmdhelp import CmdHelp
+
 
 @bot.on(admin_cmd(pattern="trt ?(.*)"))
 @bot.on(sudo_cmd(pattern="trt ?(.*)", allow_sudo=True))
@@ -46,16 +47,22 @@ async def _(event):
     except Exception as exc:
         await edit_or_reply(event, str(exc))
 
+
 @bot.on(admin_cmd(pattern=r"trc", outgoing=True))
 @bot.on(sudo_cmd(pattern=r"trc", allow_sudo=True))
 async def _(rebel):
     if REBEL.fwd_from:
         return
-    await edit_or_reply(rebel, "**All The Language Codes Can Be Found** \n ⚡ [Here](https://telegra.ph/Himanshu-05-07) ⚡🔥")
+    await edit_or_reply(
+        rebel,
+        "**All The Language Codes Can Be Found** \n ⚡ [Here](https://telegra.ph/Himanshu-05-07) ⚡🔥",
+    )
 
 
 CmdHelp("translate").add_command(
-  "trt", "<lang code> <reply to msg>", "Translates the replied message to desired language code. Type '.trc' to get all the language codes"
+    "trt",
+    "<lang code> <reply to msg>",
+    "Translates the replied message to desired language code. Type '.trc' to get all the language codes",
 ).add_command(
-  "trc", None, "Gets all the possible language codes for google translate module"
+    "trc", None, "Gets all the possible language codes for google translate module"
 ).add()

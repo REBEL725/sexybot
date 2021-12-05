@@ -1,9 +1,8 @@
-
-
 import asyncio
 import random
 
 from REBELBOT.utils import admin_cmd
+
 from userbot.cmdhelp import CmdHelp
 
 
@@ -574,6 +573,5 @@ async def _(event):
             '`"If we put solar panels above parking lots, then our cars wouldn\'t get hot and we would have a lot of clean energy."`'
         )
 
-CmdHelp("facts").add_command(
-   'bels', None, 'Randopm Facts Generator'
-).add() 
+
+CmdHelp("facts").add_command("bels", None, "Randopm Facts Generator").add()

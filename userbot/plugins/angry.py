@@ -1,9 +1,9 @@
 import asyncio
-import random
-from telethon import events
+
 from REBELBOT.utils import admin_cmd
 
 from . import *
+
 
 @bot.on(admin_cmd(pattern=r"^🤬", outgoing=True))
 @bot.on(sudo_cmd(pattern=r"^🤬", allow_sudo=True))
@@ -16,7 +16,6 @@ async def _(event):
         await asyncio.sleep(0.3)
         await event.edit("".join(deq))
         deq.rotate(1)
-        
-CmdHelp("𝚊𝚗𝚐𝚛𝚢").add_command(
-  "🤬", None, "υѕє αи∂ ѕєє"
-).add()
+
+
+CmdHelp("𝚊𝚗𝚐𝚛𝚢").add_command("🤬", None, "υѕє αи∂ ѕєє").add()

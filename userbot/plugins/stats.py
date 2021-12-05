@@ -1,12 +1,12 @@
 import time
 
+from REBELBOT.utils import admin_cmd, edit_or_reply, sudo_cmd
 from telethon.events import NewMessage
 from telethon.tl.custom import Dialog
 from telethon.tl.types import Channel, Chat, User
 
-from userbot import CMD_HELP
-from REBELBOT.utils import admin_cmd, edit_or_reply, sudo_cmd
 from userbot.cmdhelp import CmdHelp
+
 
 @bot.on(admin_cmd(pattern="stats$"))
 @bot.on(sudo_cmd(pattern="stats$", allow_sudo=True))
@@ -65,7 +65,7 @@ async def stats(
     stop_time = time.time() - start_time
     full_name = inline_mention(await event.client.get_me())
     response = f"༆ 𝚂𝚃𝙰𝚃𝚂 𝙾𝙵  {full_name} ༆\n\n"
-    response += f"┏━━━━━━✧❅✦❅✧━━━━━━\n" 
+    response += f"┏━━━━━━✧❅✦❅✧━━━━━━\n"
     response += f"┣ 🔹 𝙿𝚁𝙸𝚅𝙰𝚃𝙴 𝙲𝙷𝙰𝚃𝚂: {private_chats} \n"
     response += f"┣ 🔸 𝚄𝚂𝙴𝚁𝚂: {private_chats - bots}  \n"
     response += f"┣ 🔹 𝙱𝙾𝚃𝚂: {bots}  \n"
@@ -76,14 +76,14 @@ async def stats(
     response += f"┣ 🔸 𝙰𝙳𝙼𝙸𝙽 𝚁𝙸𝙶𝙷𝚃𝚂: {admin_in_groups - creator_in_groups} \n"
     response += f"┣ 🔹 𝙰𝙳𝙼𝙸𝙽 𝙸𝙽 𝙲𝙷𝙰𝙽𝙽𝙴𝙻: {admin_in_broadcast_channels} \n"
     response += f"┣ 🔸 𝙲𝚁𝙴𝙰𝚃𝙾𝚁: {creator_in_channels} \n"
-    response += f"┣ 🔹 𝙰𝙳𝙼𝙸𝙽 𝚁𝙸𝙶𝙷𝚃𝚂: {admin_in_broadcast_channels - creator_in_channels} \n"
+    response += (
+        f"┣ 🔹 𝙰𝙳𝙼𝙸𝙽 𝚁𝙸𝙶𝙷𝚃𝚂: {admin_in_broadcast_channels - creator_in_channels} \n"
+    )
     response += f"┣ 🔸 𝚄𝙽𝚁𝙴𝙰𝙳: {unread} \n"
     response += f"┣ 🔹 𝚄𝙽𝚁𝙴𝙰𝙳 𝙼𝙴𝙽𝚃𝙸𝙾𝙽𝚂: {unread_mentions} \n"
     response += f"┣ 🔸 𝙸𝚃 𝚃𝙾𝙾𝙺: {stop_time:.02f}𝚂 \n"
     response += f"┗━━━━━━✧❅✦❅✧━━━━━━\n\n"
-    response += (
-        f"📌 𝙵𝚛𝚘𝚖 𝚃𝚑𝚎 𝙳𝚊𝚝𝚊𝚋𝚊𝚜𝚎 𝙾𝚏 :- [𝐑𝐄𝐁𝐄𝐋𝐁𝐎𝐓](https://t.me/REBELBOT_SUPPORT)"
-    )
+    response += f"📌 𝙵𝚛𝚘𝚖 𝚃𝚑𝚎 𝙳𝚊𝚝𝚊𝚋𝚊𝚜𝚎 𝙾𝚏 :- [𝐑𝐄𝐁𝐄𝐋𝐁𝐎𝐓](https://t.me/REBELBOT_SUPPORT)"
     await hell.edit(response)
 
 
@@ -105,5 +105,5 @@ def user_full_name(user):
 
 
 CmdHelp("count").add_command(
-  'stats', None, 'Shows you the count of your groups, channels, private chats, etc.'
+    "stats", None, "Shows you the count of your groups, channels, private chats, etc."
 ).add()

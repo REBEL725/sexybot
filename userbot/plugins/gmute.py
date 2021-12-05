@@ -1,8 +1,8 @@
-from userbot.plugins.sql_helper.mute_sql import is_muted, mute, unmute
 import asyncio
-from REBELBOT.utils import admin_cmd, sudo_cmd, edit_or_reply
-from userbot.cmdhelp import CmdHelp
-from telethon import events
+
+from REBELBOT.utils import admin_cmd, edit_or_reply, sudo_cmd
+
+from userbot.plugins.sql_helper.mute_sql import is_muted, mute, unmute
 
 
 @bot.on(admin_cmd(pattern=r"gmute ?(\d+)?"))
@@ -13,12 +13,17 @@ async def blowjob(event):
         return
     reply = await event.get_reply_message()
     user_id = reply.sender_id
-    if user_id == (await borg.get_me()).id:	
-        await edit_or_reply(event, "ABA TUU KHUD KOO KUUU KAR RAHA HAA TUU PAGAL TOO NAA HOO GAYA HAA NA PHALA TUU RANCHI SA AA FIR KARNA MERE KOO USER")	
-        	
+    if user_id == (await borg.get_me()).id:
+        await edit_or_reply(
+            event,
+            "ABA TUU KHUD KOO KUUU KAR RAHA HAA TUU PAGAL TOO NAA HOO GAYA HAA NA PHALA TUU RANCHI SA AA FIR KARNA MERE KOO USER",
+        )
+
         return
     elif event.is_private:
-        await edit_or_reply(event, "`ABB BOLO BETA BHUT BOLE RAHA THA TU TERE MOUTH MA MERA WALA HA ABB")
+        await edit_or_reply(
+            event, "`ABB BOLO BETA BHUT BOLE RAHA THA TU TERE MOUTH MA MERA WALA HA ABB"
+        )
         await asyncio.sleep(3)
         private = True
     reply = await event.get_reply_message()
@@ -29,17 +34,23 @@ async def blowjob(event):
     elif private is True:
         userid = event.chat_id
     else:
-        return await edit_or_reply(event, "ABA KISI KO TAG TOO KARO KHA SAA AATA HAA YA LOG PATA NAHI 😂😂")
-    chat_id = event.chat_id
-    chat = await event.get_chat()
+        return await edit_or_reply(
+            event, "ABA KISI KO TAG TOO KARO KHA SAA AATA HAA YA LOG PATA NAHI 😂😂"
+        )
+    event.chat_id
+    await event.get_chat()
     if is_muted(userid, "gmute"):
-        return await edit_or_reply(event, "This retard cant speak. Was already gmutted earlier")
+        return await edit_or_reply(
+            event, "This retard cant speak. Was already gmutted earlier"
+        )
     try:
         mute(userid, "gmute")
     except Exception as e:
         await edit_or_reply(event, "Error occured!\nError is " + str(e))
     else:
-        await edit_or_reply(event, "ABB BOLO BETA BHUT BOLE RAHA THA TU TERE MOUTH MA MERA WALA HA ABB")
+        await edit_or_reply(
+            event, "ABB BOLO BETA BHUT BOLE RAHA THA TU TERE MOUTH MA MERA WALA HA ABB"
+        )
 
 
 @bot.on(admin_cmd(pattern=r"ungmute ?(\d+)?"))
@@ -60,17 +71,25 @@ async def cumshot(event):
     elif private is True:
         userid = event.chat_id
     else:
-        return await edit_or_reply(event, "ABA KISI KO TAG TOO KARO KHA SAA AATA HAA YA LOG PATA NAHI 😂😂")
-    chat_id = event.chat_id
+        return await edit_or_reply(
+            event, "ABA KISI KO TAG TOO KARO KHA SAA AATA HAA YA LOG PATA NAHI 😂😂"
+        )
+    event.chat_id
     if not is_muted(userid, "gmute"):
-        return await edit_or_reply(event, "SUN TUU PHALA SAA BOLE SAKTA HAA EK BAAR APNI GAND KO VV TAG KAR LOO MATLAB KUCH VV YAAR🥺🥺🥺")
+        return await edit_or_reply(
+            event,
+            "SUN TUU PHALA SAA BOLE SAKTA HAA EK BAAR APNI GAND KO VV TAG KAR LOO MATLAB KUCH VV YAAR🥺🥺🥺",
+        )
     try:
         unmute(userid, "gmute")
     except Exception as e:
         await edit_or_reply(event, "Error occured!\nError is " + str(e))
     else:
-        await edit_or_reply(event, "ABB HO GAYA BOLO BETA KABHI BAAP SA PANGA NAHI 🤘🤘! ")
-        
+        await edit_or_reply(
+            event, "ABB HO GAYA BOLO BETA KABHI BAAP SA PANGA NAHI 🤘🤘! "
+        )
+
+
 @command(incoming=True)
 async def watcher(event):
     if is_muted(event.sender_id, "gmute"):
