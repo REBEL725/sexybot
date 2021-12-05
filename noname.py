@@ -6,11 +6,11 @@ import time
 from math import ceil
 import logging
 import ffmpeg
-from main_startup import Friday
 import functools
 import threading
 from concurrent.futures import ThreadPoolExecutor
 from pyrogram.errors import FloodWait, MessageNotModified
+from userbot.utils import admin_cmd, sudo_cmd
 import multiprocessing
 import time
 import calendar
